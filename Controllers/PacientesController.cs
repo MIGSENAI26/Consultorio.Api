@@ -18,16 +18,16 @@ namespace Consultorio.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetPaciente()
+        public async Task<IActionResult> GetPaciente()
         {
-            var pacientes = _context.Pacientes.ToList();
+            var pacientes = await _context.Pacientes.ToListAsync();
             return Ok(pacientes);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetPaciente(int id)
+        public async Task<IActionResult> GetPaciente(int id)
         {
-            var paciente = _context.Pacientes.Find(id);
+            var paciente = _context.Pacientes.FindAsync(id);
             if (paciente == null)
             {
                 return NotFound();
@@ -36,12 +36,14 @@ namespace Consultorio.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Paciente>> PostPessoa(Paciente paciente)
+        public async Task<ActionResult<Paciente>> PostPaciente(Paciente paciente) 
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+
             _context.Pacientes.Add(paciente);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetPaciente), new { id = paciente.Id }, paciente);
-
         }
 
         [HttpPut]

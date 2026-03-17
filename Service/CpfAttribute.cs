@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace Consultorio.Api.Validation
+namespace Consultorio.Api.Service
 {
     public class CpfAttribute : ValidationAttribute
     {

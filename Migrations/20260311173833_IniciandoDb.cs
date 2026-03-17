@@ -11,6 +11,25 @@ namespace Consultorio.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Consultorioos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cep = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Logradouro = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bairro = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Localidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Uf = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Numero = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consultorioos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pacientes",
                 columns: table => new
                 {
@@ -41,6 +60,9 @@ namespace Consultorio.Api.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Consultorioos");
+
             migrationBuilder.DropTable(
                 name: "Pacientes");
         }

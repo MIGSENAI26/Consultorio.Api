@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Consultorio.Api.Validation;
+using Consultorio.Api.Service;
 
 namespace Consultorio.Api.Models
 {

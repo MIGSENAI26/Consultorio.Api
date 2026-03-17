@@ -1,5 +1,6 @@
 ﻿using Consultorio.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic; // Adicionado para garantir o uso de IEnumerable
 
 namespace Consultorio.Api.Data
 {
@@ -10,9 +11,13 @@ namespace Consultorio.Api.Data
         }
 
         public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Consultorioo> Consultorioos { get; set; }
+        public DbSet<Medico> Medicos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Define o CPF como índice único
             modelBuilder.Entity<Paciente>()
                 .HasIndex(p => p.Cpf)
@@ -25,3 +30,4 @@ namespace Consultorio.Api.Data
         }
     }
 }
+

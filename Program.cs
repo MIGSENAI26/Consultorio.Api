@@ -1,5 +1,7 @@
 using Consultorio.Api.Data;
+using Consultorio.Api.Service;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,17 +14,17 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient<ViaCepService>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
+    app.MapOpenApi();
+    app.MapScalarApiReference(options =>
     {
-        options.RoutePrefix = "swagger";
+        options.WithTitle("API Consultório").WithTheme(ScalarTheme.DeepSpace);
     });
 }
 
