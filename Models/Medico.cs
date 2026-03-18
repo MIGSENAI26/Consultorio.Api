@@ -7,7 +7,7 @@ namespace Consultorio.Api.Models
     public class Medico
     {
         public int Id { get; set; }
-        [Required] public string Nome { get; set; }
+        [Required] public string? Nome { get; set; }
         [Required] public string Crm { get; set; }
         public int ConsultoriooId { get; set; }
         [JsonIgnore]

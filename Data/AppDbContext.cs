@@ -13,6 +13,7 @@ namespace Consultorio.Api.Data
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Consultorioo> Consultorioos { get; set; }
         public DbSet<Medico> Medicos { get; set; }
+        public DbSet<Consulta> Consultas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -6,7 +6,7 @@ namespace Consultorio.Api.Models
     public class Paciente
     {
         public int Id { get; set; }
-        [Required] public string Nome { get; set; }
+        [Required] public string? Nome { get; set; }
         [Required, DataType(DataType.EmailAddress)] public string Email { get; set; }
 
         [Cpf]  // Validação customizada para CPF
